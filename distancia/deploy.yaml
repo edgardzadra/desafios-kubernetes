@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversao-distancia-app
+spec:
+  selector:
+    matchLabels:
+      app: conversao-distancia-app
+  template:
+    metadata:
+      labels:
+        app: conversao-distancia-app
+    spec:
+      containers:
+      - name: conversao-distancia-app
+        image: edzadradev/conversao_distancia:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000

@@ -1,0 +1,24 @@
+#conversao peso
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversao-peso-app
+spec:
+  selector:
+    matchLabels:
+      app: conversao-peso-app
+  template:
+    metadata:
+      labels:
+        app: conversao-peso-app
+    spec:
+      containers:
+      - name: conversao-peso-app
+        image: edzadradev/conversao_peso:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-rotten-potatoes
+spec:
+  selector:
+    matchLabels:
+      app: app-rotten-potatoes
+  template:
+    metadata:
+      labels:
+        app: app-rotten-potatoes
+    spec:
+      containers:
+      - name: app-rotten-potatoes
+        image: edzadradev/rotten-potatoes:latest
+        ports:
+        - containerPort: 5000
+        env:
+          - name: MONGODB_DB
+            value: admin
+          - name: MONGODB_HOST
+            value:  mongo-db-svc
+          - name: MONGODB_PORT
+            value:  "27017"
+          - name: MONGODB_USERNAME
+            value:  mongouser
+          - name: MONGODB_PASSWORD
+            value: mongopwd

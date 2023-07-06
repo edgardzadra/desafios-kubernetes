@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pedelogo-app
+spec:
+  selector:
+    matchLabels:
+      app: pedelogo-app
+  template:
+    metadata:
+      labels:
+        app: pedelogo-app
+    spec:
+      containers:
+      - name: pedelogo-app
+        image: edzadradev/pedelogo_catalogo:latest
+        ports:
+          - containerPort: 80
+            name: http 
+          - containerPort: 443
+            name: https 
+        env:
+          - name: Mongo__Host
+            value: "mongo-db-svc"
+          - name: Mongo__User
+            value: "mongouser"
+          - name: Mongo__Password
+            value: "mongopwd"
+          - name: Mongo__Port
+            value: "27017"
+          - name: Mongo__Database
+            value: "admin" 
